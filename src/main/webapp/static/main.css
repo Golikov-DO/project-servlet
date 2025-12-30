@@ -1,0 +1,28 @@
+td {
+    border: 3px solid black;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+    text-align: center;
+    position: relative; /* ДОБАВИТЬ ОБЯЗАТЕЛЬНО */
+    cursor: pointer;
+}
+
+.winner-cell {
+    background-color: rgba(255, 255, 0, 0.3);
+    color: red;
+}
+
+.winner-cell::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 6px;
+    background: red;
+    border-radius: 3px;
+    z-index: 10;
+    transform: translateY(-50%); /* Чтобы линия была ровно по центру */
+}

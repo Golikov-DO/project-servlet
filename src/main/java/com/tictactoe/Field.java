@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Field {
     private final Map<Integer, Sign> field;
+    private List<Integer> winnerOffsets;
 
     public Field() {
         field = new HashMap<>();
@@ -19,6 +20,11 @@ public class Field {
         field.put(6, Sign.EMPTY);
         field.put(7, Sign.EMPTY);
         field.put(8, Sign.EMPTY);
+    }
+
+
+    public List<Integer> getWinnerOffsets() {
+        return winnerOffsets;
     }
 
     public Map<Integer, Sign> getField() {
@@ -52,9 +58,15 @@ public class Field {
         );
 
         for (List<Integer> winPossibility : winPossibilities) {
-            if (field.get(winPossibility.get(0)) == field.get(winPossibility.get(1))
-                && field.get(winPossibility.get(0)) == field.get(winPossibility.get(2))) {
-                return field.get(winPossibility.get(0));
+            Sign firstSign = field.get(winPossibility.get(0));
+            // Проверяем, что ячейка не пустая и все три знака в ряду совпадают
+            if (firstSign != Sign.EMPTY
+                    && firstSign == field.get(winPossibility.get(1))
+                    && firstSign == field.get(winPossibility.get(2))) {
+
+                // Сохраняем выигрышные индексы перед возвратом
+                this.winnerOffsets = winPossibility;
+                return firstSign;
             }
         }
         return Sign.EMPTY;
