@@ -1,8 +1,6 @@
 package com.tictactoe;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Field {
@@ -31,18 +29,34 @@ public class Field {
         return field;
     }
 
-    public int getEmptyFieldIndex() {
+   /* public int getEmptyFieldIndex() {
         return field.entrySet().stream()
                 .filter(e -> e.getValue() == Sign.EMPTY)
                 .map(Map.Entry::getKey)
                 .findFirst().orElse(-1);
-    }
+    }*/
 
     public List<Sign> getFieldData() {
         return field.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
+    }
+
+    public int  getRandomEmptyFieldIndex(){
+        List<Integer> emptyIndexes = new ArrayList<>();
+        for (var entry : field.entrySet()) {
+            if (entry.getValue() == Sign.EMPTY) {
+                emptyIndexes.add(entry.getKey());
+            }
+        }
+
+        if (emptyIndexes.isEmpty()) {
+            return -1;
+        }
+
+        Random random = new Random();
+        return emptyIndexes.get(random.nextInt(emptyIndexes.size()));
     }
 
     public Sign checkWin() {

@@ -1,28 +1,62 @@
-td {
-    border: 3px solid black;
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-    font-size: 50px;
-    text-align: center;
-    position: relative; /* ДОБАВИТЬ ОБЯЗАТЕЛЬНО */
-    cursor: pointer;
+/* ===== Общие стили ===== */
+body {
+    font-family: Arial, sans-serif;
 }
 
-.winner-cell {
-    background-color: rgba(255, 255, 0, 0.3);
+/* ===== Контейнер поля ===== */
+.board-wrapper {
+    position: relative;
+    width: 300px;   /* 3 × 100 */
+    height: 300px;
+    margin: 20px auto;
+}
+
+/* ===== Таблица ===== */
+table {
+    border-collapse: collapse;  /* одинаковая толщина линий */
+    width: 300px;
+    height: 300px;
+}
+
+/* ===== Ячейки ===== */
+td {
+    width: 100px;
+    height: 100px;
+    border: 3px solid black;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 64px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* ===== Крестики и нолики ===== */
+.cross {
+    color: blue;
+}
+
+.nought {
     color: red;
 }
 
-.winner-cell::after {
-    content: "";
+/* ===== SVG линия победы ===== */
+#win-svg {
     position: absolute;
-    top: 50%;
-    left: 5%;
-    right: 5%;
-    height: 6px;
-    background: red;
-    border-radius: 3px;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
     z-index: 10;
-    transform: translateY(-50%); /* Чтобы линия была ровно по центру */
+    pointer-events: none; /* клики проходят сквозь линию */
+}
+
+/* ===== Ссылка ===== */
+a {
+    text-decoration: none;
+    color: #5a2ea6;
+}
+
+a:hover {
+    text-decoration: underline;
 }

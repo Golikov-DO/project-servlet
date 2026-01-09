@@ -53,7 +53,7 @@ public class LogicServlet extends HttpServlet {
         }
 
         // Получаем пустую ячейку поля
-        int emptyFieldIndex = field.getEmptyFieldIndex();
+        int emptyFieldIndex = field.getRandomEmptyFieldIndex();
 
         if (emptyFieldIndex >= 0) {
             field.getField().put(emptyFieldIndex, Sign.NOUGHT);
